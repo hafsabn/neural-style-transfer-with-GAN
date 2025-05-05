@@ -138,7 +138,6 @@ def calculate_adversarial_loss(discriminator, img, target_real):
 @st.cache_resource
 def load_models(model_paths):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    st.write(f"Using device: {device}")
     
     # Initialize models
     G_photo2monet = ResnetGenerator()
@@ -259,38 +258,11 @@ def main():
     # Main content area
     st.subheader("Transform Your Photos into Monet-style Paintings")
     
-    # Image upload options
-    image_source = st.radio(
-        "Choose image source:",
-        ("Upload your own image", "Use sample image")
-    )
-    
-    if image_source == "Upload your own image":
-        uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-        if uploaded_file is not None:
-            image = Image.open(uploaded_file).convert("RGB")
-        else:
-            image = None
+    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+    if uploaded_file is not None:
+        image = Image.open(uploaded_file).convert("RGB")
     else:
-        # Use a sample image
-        sample_image_option = st.selectbox(
-            "Select a sample image:",
-            ("Landscape", "Portrait", "City")
-        )
-        
-        # Sample images - you can replace these with actual file paths
-        sample_images = {
-            "Landscape": "sample_landscape.jpg",
-            "Portrait": "sample_portrait.jpg",
-            "City": "sample_city.jpg"
-        }
-        
-        # Check if the sample image exists, otherwise use a placeholder
-        if os.path.exists(sample_images[sample_image_option]):
-            image = Image.open(sample_images[sample_image_option]).convert("RGB")
-        else:
-            st.warning(f"Sample image {sample_images[sample_image_option]} not found. Please upload your own image.")
-            image = None
+        image = None
     
     # Process button
     process_button = st.button("Transform to Monet Style")
@@ -298,7 +270,7 @@ def main():
     if image is not None:
         # Display original image
         st.subheader("Original Photo")
-        st.image(image, use_container_width=True, caption="Original Image")
+        st.image(image, use_container_width=False, caption="Original Image")
         
         # Only proceed if models are loaded and process button is clicked
         if models_loaded and process_button:
@@ -323,7 +295,7 @@ def main():
                 col1, col2 = st.columns(2)
                 
                 with col1:
-                    st.image(monet_img, use_column_width=True, caption="Monet Style")
+                    st.image(monet_img, use_container_width=False, caption="Monet Style")
                     
                     # Convert numpy array to PIL Image for download
                     monet_pil = Image.fromarray((monet_img * 255).astype(np.uint8))
@@ -338,7 +310,7 @@ def main():
                     )
                 
                 with col2:
-                    st.image(reconstructed_img, use_column_width=True, caption="Reconstructed Photo")
+                    st.image(reconstructed_img, use_container_width=False, caption="Reconstructed Photo")
                     
                     # Convert numpy array to PIL Image for download
                     reconstructed_pil = Image.fromarray((reconstructed_img * 255).astype(np.uint8))
@@ -370,20 +342,7 @@ def main():
                         ax.set_title('CycleGAN Losses')
                         st.pyplot(fig)
                 
-                # Additional information about the model
-                with st.expander("About Neural Style Transfer"):
-                    st.write("""
-                    ### How CycleGAN Works
-                    
-                    CycleGAN is a type of Generative Adversarial Network that learns to translate between domains without paired examples. 
-                    In this case, it learns to transform photographs into Monet's painting style.
-                    
-                    - **Generator (Photo → Monet)**: Transforms your photo into Monet's style
-                    - **Generator (Monet → Photo)**: Reconstructs a photo from the stylized image
-                    - **Discriminators**: Help the generators create more convincing images
-                    
-                    The cycle consistency loss ensures that the reconstructed image resembles the original input.
-                    """)
+                
         elif not models_loaded and process_button:
             st.warning("Please load the models first using the sidebar options.")
         elif not process_button and models_loaded:
