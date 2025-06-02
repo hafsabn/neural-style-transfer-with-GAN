@@ -43,7 +43,7 @@ We used the [Monet2Photo dataset](https://www.kaggle.com/datasets/splcher/monet2
 - **Batch size**: 16
 - **Epochs**: 50 
 
-### 🏗 Key Steps
+###  Key Steps
 1. Load and preprocess datasets
 2. Build generator and discriminator models
 3. Train CycleGAN with combined loss functions
@@ -72,7 +72,7 @@ Here are some sample outputs:
 - CycleGAN architecture (based on Zhu et al. 2017)
 
 
-## 📚 References
+##  References
 
 - [CycleGAN Paper](https://arxiv.org/abs/1703.10593)
 - [Original CycleGAN GitHub](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
