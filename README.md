@@ -54,11 +54,7 @@ We used the [Monet2Photo dataset](https://www.kaggle.com/datasets/splcher/monet2
 ##  Results
 
 Here are some sample outputs:
-
-| Input Photo | Monet-style Output |
-|-------------|--------------------|
-| ![photo1](images/photo1.jpg) | ![monet1](images/monet1.jpg) |
-| ![photo2](images/photo2.jpg) | ![monet2](images/monet2.jpg) |
+![photo1](images/result.jpg) 
 
 
 
