@@ -38,7 +38,7 @@ We used the [Monet2Photo dataset](https://www.kaggle.com/datasets/splcher/monet2
 ##  Implementation Details
 
 - **Framework**: PyTorch
-- **Training time**: ~6 hours on GPU
+- **Training time**: ~4 hours on GPU
 - **Image size**: 256x256
 - **Batch size**: 16
 - **Epochs**: 50 
