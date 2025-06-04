@@ -54,7 +54,7 @@ We used the [Monet2Photo dataset](https://www.kaggle.com/datasets/splcher/monet2
 ##  Results
 
 Here are some sample outputs:
-![photo1](images/result.jpg) 
+![photo1](images/result.png) 
 
 
 
