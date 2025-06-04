@@ -54,12 +54,11 @@ We used the [Monet2Photo dataset](https://www.kaggle.com/datasets/splcher/monet2
 ##  Results
 
 Here are some sample outputs:
+![photo1](images/result.png) 
 
-| Input Photo | Monet-style Output |
-|-------------|--------------------|
-| ![photo1](images/photo1.jpg) | ![monet1](images/monet1.jpg) |
-| ![photo2](images/photo2.jpg) | ![monet2](images/monet2.jpg) |
+## Streamlit Interface
 
+To make the model more interactive and accessible, we built a Streamlit web app that allows users to upload their own real images and get a Monet-style painting in return.
 
 
 ##  Technologies Used
@@ -70,6 +69,7 @@ Here are some sample outputs:
 - Matplotlib
 - PIL
 - CycleGAN architecture (based on Zhu et al. 2017)
+- Streamlit
 
 
 ##  References
